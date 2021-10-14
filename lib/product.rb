@@ -5,4 +5,8 @@ class Product
     @price = product_attributes[:price]
     @stock = product_attributes[:stock]
   end
+
+  def to_s
+    #abstract parent method
+  end
 end
