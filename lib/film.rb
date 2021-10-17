@@ -2,6 +2,11 @@ class Film < Product
   attr_reader :name, :year, :director
   attr_writer :name, :year, :director
 
+  def self.from_file(file_path)
+    lines = File.readlines(file_path, chomp: true, encoding: 'UTF-8')
+    Film.new(name: lines[0], director: lines[1], year: lines[2].to_i, price: lines[3].to_i, stock: lines[4].to_i)
+  end
+
   def initialize(product_attributes)
     super
 

@@ -2,23 +2,26 @@ require_relative 'lib/product'
 require_relative 'lib/book'
 require_relative 'lib/film'
 
-products = []
+files_paths = Dir["#{__dir__}/data/films/*"].sort
 
-leon_film = Film.new(price: 10, stock: 30, name: "Leon", year: 1994,
-  director: "Luc Besson")
-products << leon_film
+puts files_paths.to_s
 
-harry_potter_book = Book.new(price: 23, stock: 5,
-  name: "Harry Potter and the Sorcerer's Stone", genre: "Fantasy", author: "J. K. Rowling")
-products << harry_potter_book
+films =
+  files_paths.map do |file_path|
+    film = Film.from_file(file_path)
+  end
 
-puts "Product list:"
-products.each { |product| puts product.to_s}
+files_paths = Dir["#{__dir__}/data/books/*"].sort
+
+books =
+  files_paths.map do |file_path|
+    book = Book.from_file(file_path)
+  end
+
+puts "Films list:"
+films.each { |film| puts film.to_s}
 
 puts "-------"
 
-harry_potter_book.update(price: 30_000)
-leon_film.price = 20_000
-
-puts leon_film.to_s
-puts harry_potter_book.to_s
+puts "Books list:"
+books.each { |book| puts book.to_s}

@@ -15,4 +15,8 @@ class Product
     @price = updated_attributes[:price] if updated_attributes[:price]
     @stock = updated_attributes[:stock] if updated_attributes[:stock]
   end
+
+  def self.from_file(file_path)
+    raise NotImplementedError
+  end
 end
