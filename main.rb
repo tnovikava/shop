@@ -1,10 +1,9 @@
 require_relative 'lib/product'
 require_relative 'lib/book'
 require_relative 'lib/film'
+require_relative 'lib/product_collection'
 
 files_paths = Dir["#{__dir__}/data/films/*"].sort
-
-puts files_paths.to_s
 
 films =
   files_paths.map do |file_path|
@@ -18,10 +17,10 @@ books =
     book = Book.from_file(file_path)
   end
 
-puts "Films list:"
-films.each { |film| puts film.to_s}
+all_products = ProductCollection.from_dir(File.dirname(__FILE__) + '/data')
 
-puts "-------"
+all_products.sort!(by: :price, order: :asc)
 
-puts "Books list:"
-books.each { |book| puts book.to_s}
+all_products.to_a.each do |product|
+  puts product
+end
