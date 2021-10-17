@@ -3,8 +3,8 @@ class Product
   attr_writer :price, :stock
 
   def initialize(product_attributes)
-    @price = product_attributes[:price]
-    @stock = product_attributes[:stock]
+    @price = product_attributes[:price].to_i
+    @stock = product_attributes[:stock].to_i
   end
 
   def to_s
@@ -18,5 +18,9 @@ class Product
 
   def self.from_file(file_path)
     raise NotImplementedError
+  end
+
+  def stock_left?
+    @stock > 0
   end
 end

@@ -4,7 +4,7 @@ class Book < Product
 
   def self.from_file(file_path)
     lines = File.readlines(file_path, chomp: true, encoding: 'UTF-8')
-    Book.new(name: lines[0], author: lines[1], genre: lines[2], price: lines[3].to_i, stock: lines[4].to_i)
+    self.new(name: lines[0], author: lines[1], genre: lines[2], price: lines[3].to_i, stock: lines[4].to_i)
   end
 
   def initialize(product_attributes)
