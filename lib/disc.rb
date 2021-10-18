@@ -10,15 +10,18 @@ class Disc < Product
   def initialize(product_attributes)
     super
 
-    @album_name = product_attributes[:album_name]
-    @author = product_attributes[:author]
-    @genre = product_attributes[:genre]
-    @year = product_attributes[:year]
-
+    @album_name = product_attributes.fetch(:album_name)
+    @author = product_attributes.fetch(:author)
+    @genre = product_attributes.fetch(:genre)
+    @year = product_attributes.fetch(:year)
   end
 
   def to_s
     "Album #{@album_name} (#{@year}), genre #{@genre}, author - #{@author}, cost = #{@price} USD (#{@stock} left)."
+  end
+
+  def short_info
+    "Album #{@album_name} (#{@year}), author - #{@author}."
   end
 
   def update(updated_attributes)

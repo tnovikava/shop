@@ -10,13 +10,17 @@ class Film < Product
   def initialize(product_attributes)
     super
 
-    @name = product_attributes[:name]
-    @year = product_attributes[:year]
-    @director = product_attributes[:director]
+    @name = product_attributes.fetch(:name)
+    @year = product_attributes.fetch(:year)
+    @director = product_attributes.fetch(:director)
   end
 
   def to_s
     "Film #{@name} (#{@year}), director - #{@director}, cost = #{@price} USD (#{@stock} left)."
+  end
+
+  def short_info
+    "Film #{@name} (#{@year}), director - #{@director}."
   end
 
   def update(updated_attributes)

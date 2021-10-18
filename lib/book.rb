@@ -10,13 +10,17 @@ class Book < Product
   def initialize(product_attributes)
     super
 
-    @name = product_attributes[:name]
-    @genre = product_attributes[:genre]
-    @author = product_attributes[:author]
+    @name = product_attributes.fetch(:name)
+    @genre = product_attributes.fetch(:genre)
+    @author = product_attributes.fetch(:author)
   end
 
   def to_s
     "Book #{@name}, genre #{@genre}, author - #{@author}, cost = #{@price} USD (#{@stock} left)."
+  end
+
+  def short_info
+    "Book #{@name}, author - #{@author}."
   end
 
   def update(updated_attributes)

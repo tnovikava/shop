@@ -7,10 +7,6 @@ class ProductCollection
 
   attr_reader :products
 
-  def initialize(products = [])
-    @products = products
-  end
-
   def self.from_dir(dir_path)
     products = []
 
@@ -26,12 +22,12 @@ class ProductCollection
     self.new(products)
   end
 
+  def initialize(products = [])
+    @products = products
+  end
+
   def show_list
-    list = []
-    @products.each_with_index do |product, index|
-      list <<"#{index+1}. #{product.to_s}"
-    end
-    list << "0. Exit"
+    @products.each_with_index.map { |product, index| "#{index+1}. #{product}" if product.stock > 0 }
   end
 
   def sort!(by: name, order: asc)
